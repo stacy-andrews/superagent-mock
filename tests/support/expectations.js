@@ -423,7 +423,17 @@ module.exports = function (request, config) {
           .end(function (err, result) {
             test.ok(!err);
             test.equal(result.data, 'your token: valid_token');
-            test.done();
+            test.done();  
+          });
+      },
+
+      'setting headers one at a time': function (test) {
+        request.put('https://authorized.example/')
+          .set("Authorization", "valid_token")
+          .end(function (err, result) {
+            test.ok(!err);
+            test.equal(result.data, 'your token: valid_token');
+            test.done();  
           });
       }
     }
